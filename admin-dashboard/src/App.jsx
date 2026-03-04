@@ -1,15 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {Route, Routes} from 'react-router-dom'
+import LoginPage from './authentication/LoginPage'
+import UserInformations from './pages/UserInformations'
+import Register from './authentication/Register'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div className='underline'>
-         Hello, World
+      <div>
+          <Routes>
+              <Route path='/' element={<LoginPage/>}/>
+              <Route path='/register' element={<Register/>} />
+              <Route path='/UserInformations' element={<UserInformations/>}/>
+          </Routes>
       </div>
     </>
   )
