@@ -6,22 +6,29 @@ function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const navigate = useNavigate();
 
     function handlerSubmit(e) {
         e.preventDefault();
-
-        if(password !== confirmPassword) {
-            alert('Passwords do not match');
+        if (!name || !email || !password || !confirmPassword) {
+            alert("All fields are required");
             return;
         }
-
-        if(password.length <= 6) {
-            alert('Password must be greater than 6 characters');
+        const emailRegex = /\S+@\S+\.\S+/;
+        if (!emailRegex.test(email)) {
+            alert("Invalid email format");
             return;
         }
-
+        if (password.length <= 6) {
+            alert("Password must be greater than 6 characters");
+            return;
+        }
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
         navigate('/');
     }
 
@@ -38,7 +45,7 @@ function Register() {
                             placeholder="Enter Your Name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
                             required
                         />
                     </div>
@@ -50,7 +57,7 @@ function Register() {
                             placeholder="Enter Your Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
                             required
                         />
                     </div>
@@ -58,30 +65,44 @@ function Register() {
                     <div>
                         <label className="block text-gray-700 font-semibold mb-1">Password:</label>
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             placeholder="Enter Your Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="text-sm text-gray-500 mt-1"
+                        >
+                            {showPassword ? "Hide" : "Show"} Password
+                        </button>
                     </div>
 
                     <div>
                         <label className="block text-gray-700 font-semibold mb-1">Confirm Password:</label>
                         <input
-                            type="password"
+                            type={showConfirmPassword ? "text" : "password"}
                             placeholder="Confirm Your Password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition"
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            className="text-sm text-gray-500 mt-1"
+                        >
+                            {showConfirmPassword ? "Hide" : "Show"} Password
+                        </button>
                     </div>
 
                     <button
                         type="submit"
-                        className="w-full bg-purple-500 text-white py-2 rounded-lg font-bold hover:from-pink-500 hover:to-purple-500 transition"
+                        className="w-full bg-pink-500 text-white py-2 rounded-lg font-bold hover:bg-pink-600 transition"
                     >
                         Register
                     </button>
@@ -89,7 +110,7 @@ function Register() {
 
                 <p className="text-center text-gray-500 mt-4">
                     Already have an account?{" "}
-                    <Link to="/" className="text-purple-500 font-semibold hover:underline">
+                    <Link to="/" className="text-pink-500 font-semibold hover:underline">
                         Login
                     </Link>
                 </p>
