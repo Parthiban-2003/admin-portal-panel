@@ -16,13 +16,13 @@ const Slice = createSlice({
 
         deleteusers: (state,action) =>
         {
-            state.users = state.users.filter(item=>item !== action.payload);
-            localStorage.setItem('users',localStorage.setItem(state.users));
+            state.users = state.users.filter(item=>item.id !== action.payload);
+            localStorage.setItem('users',JSON.stringify(state.users));
         },
 
         updateUsers: (state, action) =>
         {
-            const Index = state.users.find(item => item.id === action.payload.id);
+            const Index = state.users.findIndex(item => item.id === action.payload.id);
             state.users[Index] = action.payload;
             localStorage.setItem('users',JSON.stringify(state.users));
         }
