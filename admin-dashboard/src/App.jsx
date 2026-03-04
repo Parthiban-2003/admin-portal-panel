@@ -3,6 +3,7 @@ import {Route, Routes} from 'react-router-dom'
 import LoginPage from './authentication/LoginPage'
 import UserInformations from './pages/UserInformations'
 import Register from './authentication/Register'
+import UserDisplay from './pages/UserDisplay'
 
 function App() {
 
@@ -13,6 +14,8 @@ function App() {
               <Route path='/' element={<LoginPage/>}/>
               <Route path='/register' element={<Register/>} />
               <Route path='/UserInformations' element={<UserInformations/>}/>
+              <Route path='/UserInformations/:id' element={<UserInformations/>}/>
+              <Route path='/UserDisplay' element={<UserDisplay/>} />
           </Routes>
       </div>
     </>
