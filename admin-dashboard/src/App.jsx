@@ -4,7 +4,7 @@ import LoginPage from './authentication/LoginPage'
 import UserInformations from './pages/UserInformations'
 import Register from './authentication/Register'
 import UserDisplay from './pages/UserDisplay'
-import Dashboard from './pages/Dashboard'
+import Dashboard from './dashboard/Dashboard'
 
 function App() {
 

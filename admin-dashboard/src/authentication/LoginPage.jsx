@@ -24,7 +24,8 @@ function LoginPage() {
       alert("Password must be at least 6 characters");
       return;
     }
-    navigate('/UserInformations');
+    navigate('/dashboard');
+    // navigate('/UserInformations')
   }
 
   return (
